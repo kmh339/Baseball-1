@@ -33,16 +33,63 @@ namespace Baseball
             Console.WriteLine();
 
 
+            int tryCount = 0;
+            while (true)
+            {
+                tryCount++;
 
-            // 2 추측을 입력받는다
+                                
+                // 2 추측을 입력받는다
+                int guess0 = int.Parse(Console.ReadLine());
+                int guess1 = int.Parse(Console.ReadLine());
+                int guess2 = int.Parse(Console.ReadLine());
 
-            // 3 결과를 계산한다
+                Console.WriteLine("[추측]");
+                Console.Write(" " + guess0);
+                Console.Write(" " + guess1);
+                Console.Write(" " + guess2);
+                Console.WriteLine();
 
-            // 4 결과를 출력한다.
 
-            // 5 3S가 아니면 2번으로 돌아간다.
+                // 3 결과를 계산한다
+                int strike = 0;
+                int ball = 0;
+                int @out = 0;
+
+                if (guess0 == answer0)
+                    strike++;
+                else if (guess0 == answer1 || guess0 == answer2)
+                    ball++;
+                else
+                    @out++;
+
+                if (guess1 == answer1)
+                    strike++;
+                else if (guess1 == answer2 || guess1 == answer0)
+                    ball++;
+                else
+                    @out++;
+
+                if (guess2 == answer2)
+                    strike++;
+                else if (guess2 == answer0 || guess2 == answer1)
+                    ball++;
+                else
+                    @out++;
+
+
+                // 4 결과를 출력한다.
+                Console.WriteLine($"S:{strike}, B:{ball}, O:{@out}");
+
+
+                // 5 3S가 아니면 2번으로 돌아간다.
+                if (strike == 3)
+                    break;
+            }
+
 
             // 6 도전횟수를 출력한다.
+            Console.WriteLine($"{tryCount} 회");
         }
     }
 }
