@@ -8,26 +8,23 @@ namespace Baseball
 {
     class Program
     {
-        private const int MaxValue = 10;
-        private const int Digit = 3;
-
         static void Main(string[] args)
         {
             // 1 정답을 생성한다.
             Random random = new Random();
-            int[] answers = new int[Digit];
+            int[] answers = new int[Constant.Digit];
 
             while (true)
             {
-                for (int i = 0; i < Digit; i++)
-                    answers[i] = random.Next(MaxValue);
+                for (int i = 0; i < Constant.Digit; i++)
+                    answers[i] = random.Next(Constant.MaxValue);
 
                 if (answers[0] != answers[1] && answers[1] != answers[2] && answers[2] != answers[0])
                     break;
             }
 
             Console.WriteLine("[정답]");
-            for (int i = 0; i < Digit; i++)
+            for (int i = 0; i < Constant.Digit; i++)
                 Console.Write(" " + answers[i]);
             Console.WriteLine();
 
@@ -39,41 +36,27 @@ namespace Baseball
 
 
                 // 2 추측을 입력받는다
-                int[] guesses = new int[Digit];
-                for (int i = 0; i < Digit; i++)
+                int[] guesses = new int[Constant.Digit];
+                for (int i = 0; i < Constant.Digit; i++)
                     guesses[i] = int.Parse(Console.ReadLine());
 
                 Console.WriteLine("[추측]");
-                for (int i = 0; i < Digit; i++)
+                for (int i = 0; i < Constant.Digit; i++)
                     Console.Write(" " + guesses[0]);
                 Console.WriteLine();
 
 
                 // 3 결과를 계산한다
-                int strike = 0;
-                int ball = 0;
-                int @out = 0;
-
-                for (int i = 0; i < Digit; i++)
-                {
-                    int j = (i + 1) % Digit;
-                    int k = (i + 2) % Digit;
-
-                    if (guesses[i] == answers[i])
-                        strike++;
-                    else if (guesses[i] == answers[j] || guesses[i] == answers[k])
-                        ball++;
-                    else
-                        @out++;
-                }
+                Result result = new Result();
+                result.Calculate(answers, guesses);
 
 
                 // 4 결과를 출력한다.
-                Console.WriteLine($"S:{strike}, B:{ball}, O:{@out}");
+                result.Print();
 
 
                 // 5 3S가 아니면 2번으로 돌아간다.
-                if (strike == Digit)
+                if (result.IsCorrect())
                     break;
             }
 
