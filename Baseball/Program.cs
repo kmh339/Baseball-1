@@ -8,6 +8,9 @@ namespace Baseball
 {
     class Program
     {
+        private const int MaxValue = 10;
+        private const int Digit = 3;
+
         static void Main(string[] args)
         {
             // 1 정답을 생성한다.
@@ -18,9 +21,9 @@ namespace Baseball
 
             while (true)
             {
-                answer0 = random.Next(10);
-                answer1 = random.Next(10);
-                answer2 = random.Next(10);
+                answer0 = random.Next(MaxValue);
+                answer1 = random.Next(MaxValue);
+                answer2 = random.Next(MaxValue);
 
                 if (answer0 != answer1 && answer1 != answer2 && answer2 != answer0)
                     break;
@@ -83,7 +86,7 @@ namespace Baseball
 
 
                 // 5 3S가 아니면 2번으로 돌아간다.
-                if (strike == 3)
+                if (strike == Digit)
                     break;
             }
 
