@@ -17,9 +17,9 @@ namespace Baseball
             Console.WriteLine();
         }
 
-        static void Main(string[] args)
+        #region CreateAnswers
+        private static int[] CreateAnswers()
         {
-            // 1 정답을 생성한다.
             Random random = new Random();
             int[] answers = new int[Constant.Digit];
 
@@ -32,6 +32,24 @@ namespace Baseball
                     break;
             }
 
+            return answers;
+        }
+        #endregion
+
+        private static int[] InputGuesses()
+        {
+            int[] guesses = new int[Constant.Digit];
+            for (int i = 0; i < Constant.Digit; i++)
+                guesses[i] = int.Parse(Console.ReadLine());
+
+            return guesses;
+        }
+
+        static void Main(string[] args)
+        {
+            // 1 정답을 생성한다.
+            int[] answers = CreateAnswers();
+
             PrintNumbers("[정답]", answers);
             
             int tryCount = 0;
@@ -41,9 +59,7 @@ namespace Baseball
 
 
                 // 2 추측을 입력받는다
-                int[] guesses = new int[Constant.Digit];
-                for (int i = 0; i < Constant.Digit; i++)
-                    guesses[i] = int.Parse(Console.ReadLine());
+                int[] guesses = InputGuesses();
 
                 PrintNumbers("[추측]", guesses);
 
@@ -66,5 +82,6 @@ namespace Baseball
             // 6 도전횟수를 출력한다.
             Console.WriteLine($"{tryCount} 회");
         }
+
     }
 }
