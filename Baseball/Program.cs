@@ -15,13 +15,6 @@ namespace Baseball
             for (int i = 0; i < Constant.Digit; i++)
                 Console.Write(" " + numbers[i]);
             Console.WriteLine();
-
-
-            Console.WriteLine(prefix);
-                for (int i = 0; i < Constant.Digit; i++)
-                    Console.Write(" " + numbers[i]);
-                Console.WriteLine();
-
         }
 
         static void Main(string[] args)
