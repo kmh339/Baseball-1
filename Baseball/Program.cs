@@ -55,7 +55,7 @@ namespace Baseball
                 result.Print();
 
 
-                // 5 3S가 아니면 2번으로 돌아간다.
+                // 5 정답이라면 게임을 끝낸다.
                 if (result.IsCorrect())
                     break;
             }
