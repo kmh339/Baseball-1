@@ -1,13 +1,29 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Baseball
 {
     class Program
     {
+        /// <summary>
+        /// 숫자들을 출력한다.
+        /// </summary>
+        /// <param name="prefix">숫자들을 출력하기 전 표시할 텍스트</param>
+        /// <param name="numbers">출력할 숫자들</param>
+        private static void PrintNumbers(string prefix, int[] numbers)
+        {
+            Console.WriteLine(prefix);
+            for (int i = 0; i < Constant.Digit; i++)
+                Console.Write(" " + numbers[i]);
+            Console.WriteLine();
+
+
+            Console.WriteLine(prefix);
+                for (int i = 0; i < Constant.Digit; i++)
+                    Console.Write(" " + numbers[i]);
+                Console.WriteLine();
+
+        }
+
         static void Main(string[] args)
         {
             // 1 정답을 생성한다.
@@ -23,12 +39,8 @@ namespace Baseball
                     break;
             }
 
-            Console.WriteLine("[정답]");
-            for (int i = 0; i < Constant.Digit; i++)
-                Console.Write(" " + answers[i]);
-            Console.WriteLine();
-
-
+            PrintNumbers("[정답]", answers);
+            
             int tryCount = 0;
             while (true)
             {
@@ -40,10 +52,7 @@ namespace Baseball
                 for (int i = 0; i < Constant.Digit; i++)
                     guesses[i] = int.Parse(Console.ReadLine());
 
-                Console.WriteLine("[추측]");
-                for (int i = 0; i < Constant.Digit; i++)
-                    Console.Write(" " + guesses[0]);
-                Console.WriteLine();
+                PrintNumbers("[추측]", guesses);
 
 
                 // 3 결과를 계산한다
