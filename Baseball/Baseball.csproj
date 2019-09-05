@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="Answer.cs" />
     <Compile Include="Constant.cs" />
+    <Compile Include="NumberContainer.cs" />
     <Compile Include="Guess.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
