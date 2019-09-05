@@ -4,53 +4,15 @@ namespace Baseball
 {
     class Program
     {
-        /// <summary>
-        /// 숫자들을 출력한다.
-        /// </summary>
-        /// <param name="prefix">숫자들을 출력하기 전 표시할 텍스트</param>
-        /// <param name="numbers">출력할 숫자들</param>
-        private static void PrintNumbers(string prefix, int[] numbers)
-        {
-            Console.WriteLine(prefix);
-            for (int i = 0; i < Constant.Digit; i++)
-                Console.Write(" " + numbers[i]);
-            Console.WriteLine();
-        }
-
-        #region CreateAnswers
-        private static int[] CreateAnswers()
-        {
-            Random random = new Random();
-            int[] answers = new int[Constant.Digit];
-
-            while (true)
-            {
-                for (int i = 0; i < Constant.Digit; i++)
-                    answers[i] = random.Next(Constant.MaxValue);
-
-                if (answers[0] != answers[1] && answers[1] != answers[2] && answers[2] != answers[0])
-                    break;
-            }
-
-            return answers;
-        }
-        #endregion
-
-        private static int[] InputGuesses()
-        {
-            int[] guesses = new int[Constant.Digit];
-            for (int i = 0; i < Constant.Digit; i++)
-                guesses[i] = int.Parse(Console.ReadLine());
-
-            return guesses;
-        }
-
         static void Main(string[] args)
         {
-            // 1 정답을 생성한다.
-            int[] answers = CreateAnswers();
+           // TDD (Test-Driven Development, 테스트 주도 개발)
 
-            PrintNumbers("[정답]", answers);
+            // 1 정답을 생성한다.
+            Answer answer = new Answer();
+            answer.Create();
+
+            answer.Print();
             
             int tryCount = 0;
             while (true)
@@ -59,14 +21,15 @@ namespace Baseball
 
 
                 // 2 추측을 입력받는다
-                int[] guesses = InputGuesses();
+                Guess guess = new Guess();
+                guess.Input();
 
-                PrintNumbers("[추측]", guesses);
+                guess.Print();
 
 
                 // 3 결과를 계산한다
                 Result result = new Result();
-                result.Calculate(answers, guesses);
+                result.Calculate(answer, guess);
 
 
                 // 4 결과를 출력한다.
